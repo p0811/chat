@@ -226,3 +226,23 @@ exports.removeUser = (req,res,next) =>{
             });
         });
 }
+
+exports.getUserDetails = (req,res,next) =>{
+    User.findOne({user_id:parseInt(req.params.userid)})
+        .select("name user_id email_id")
+        .exec()
+        .then(result => {
+            if(result=== null){
+                return res.status(404).json({
+                            message:"User Not Found"
+                        });
+            }
+            res.status(200).json({
+                message:result
+            });
+        }).catch(err=>{
+            res.status(500).json({
+                error : err
+            });
+        });
+}

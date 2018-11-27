@@ -34,6 +34,7 @@ router.post('/login',userControllers.userLogin);
 router.post('/changepassword',checkAuth,userControllers.changePassword);
 router.put('/updateprofileimage/:userid',checkAuth,upload.single('avatar'),userControllers.updateProfileImage);
 router.put('/updateProfile/:userid',checkAuth,userControllers.updateProfile);
+router.get('/userdetails/:userid',checkAuth,userControllers.getUserDetails);
 
 
 router.get('/verify/:token',userControllers.verifyEmail);
